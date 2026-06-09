@@ -3,9 +3,10 @@ services:
     image: redis:7-alpine
     container_name: api-redis
     restart: unless-stopped
-    command: redis-server --requirepass ${REDIS_PASS}
+    # Properly parameterized command
+    command: ["redis-server", "--appendonly", "yes", "--requirepass", "${REDIS_PASS}"]
     ports:
-      - "6379:6379"
+      - "${REDIS_PORT}:6379"
     volumes:
       - redis_data:/data
 
@@ -17,8 +18,8 @@ services:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
     ports:
-      - "5672:5672"
-      - "15672:15672"
+      - "${RABBITMQ_PORT}:5672"
+      - "${RABBITMQ_MGMT_PORT}:15672"
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
 
