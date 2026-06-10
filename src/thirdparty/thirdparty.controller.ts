@@ -1,4 +1,11 @@
-import { Controller, Post, Body, Get, HttpCode, HttpStatus } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  HttpCode,
+  HttpStatus,
+} from '@nestjs/common';
 import { ThirdpartyService } from './thirdparty.service';
 import { CreateThirdPartyDto } from './dto/create-thirdparty.dto';
 
@@ -11,9 +18,15 @@ export class ThirdpartyController {
     return this.service.health();
   }
 
-  @Post()
+  @Post('user')
   @HttpCode(HttpStatus.CREATED)
-  create(@Body() dto: CreateThirdPartyDto) {
-    return this.service.create(dto);
+  createUser(@Body() dto: CreateThirdPartyDto) {
+    return this.service.createUser(dto);
+  }
+
+  @Post('carIns')
+  @HttpCode(HttpStatus.CREATED)
+  carInsurance() {
+    return this.service.carInsurance();
   }
 }
