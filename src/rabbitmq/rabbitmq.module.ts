@@ -1,13 +1,10 @@
 import { Module } from '@nestjs/common';
-import { ClientsModule } from '@nestjs/microservices';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ClientsModule, Transport, RmqOptions } from '@nestjs/microservices';
+import { ConfigService } from '@nestjs/config';
 import { RabbitmqService } from './rabbitmq.service';
-import { Transport, RmqOptions } from '@nestjs/microservices';
-// Ensure this points to the file created above
 
 @Module({
   imports: [
-    ConfigModule,
     ClientsModule.registerAsync([
       {
         name: 'RABBITMQ_SERVICE',
@@ -18,7 +15,7 @@ import { Transport, RmqOptions } from '@nestjs/microservices';
             urls: [
               `amqp://${config.get('RABBITMQ_USER')}:${config.get('RABBITMQ_PASS')}@${config.get('RABBITMQ_HOST')}:${config.get('RABBITMQ_PORT')}`,
             ],
-            queue: 'API_JOB',
+            queue: config.get<string>('RBT_QUEUE_NAME'),
             queueOptions: { durable: true },
             noAck: true,
           },
