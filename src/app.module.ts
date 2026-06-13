@@ -10,7 +10,6 @@ import { ConfigModule } from './config/config.module';
     RedisModule,
     RabbitmqModule,
     ThirdpartyModule,
-    ConfigModule,
   ],
   controllers: [],
   providers: [],

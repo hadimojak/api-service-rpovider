@@ -30,7 +30,7 @@ export class RabbitmqService implements OnModuleDestroy {
   }
 
   async produce(payload: unknown): Promise<void> {
-    const queueName = this.configService.config.rabbitmq.queueName;
+    const queueName = ConfigService.config.rabbitmq.queueName;
 
     await lastValueFrom(this.client.emit(queueName, payload));
   }

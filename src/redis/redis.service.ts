@@ -8,9 +8,9 @@ export class RedisService extends Redis implements OnModuleDestroy {
 
   constructor(private readonly configService: ConfigService) {
     super({
-      host: configService.config.redis.host,
-      port: configService.config.redis.port,
-      password: configService.config.redis.password,
+      host: ConfigService.config.redis.host,
+      port: ConfigService.config.redis.port,
+      password: ConfigService.config.redis.password,
       lazyConnect: true,
     });
 

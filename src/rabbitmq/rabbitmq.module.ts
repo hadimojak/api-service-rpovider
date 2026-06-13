@@ -12,14 +12,14 @@ import { RabbitmqService } from './rabbitmq.service';
     {
       provide: 'RABBITMQ_SERVICE',
       inject: [ConfigService],
-      useFactory: (configService: ConfigService): ClientProxy =>
+      useFactory: (): ClientProxy =>
         ClientProxyFactory.create({
           transport: Transport.RMQ,
           options: {
             urls: [
-              `amqp://${configService.config.rabbitmq.user}:${configService.config.rabbitmq.password}@${configService.config.rabbitmq.host}:${configService.config.rabbitmq.port}`,
+              `amqp://${ConfigService.config.rabbitmq.user}:${ConfigService.config.rabbitmq.password}@${ConfigService.config.rabbitmq.host}:${ConfigService.config.rabbitmq.port}`,
             ],
-            queue: configService.config.rabbitmq.queueName,
+            queue: ConfigService.config.rabbitmq.queueName,
             queueOptions: { durable: true },
             noAck: true,
           },
