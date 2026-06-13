@@ -4,7 +4,7 @@ services:
     container_name: api-redis
     restart: unless-stopped
     # Properly parameterized command
-    command: ["redis-server", "--appendonly", "yes", "--requirepass", "${REDIS_PASS}"]
+    command: [ "redis-server", "--appendonly", "yes", "--requirepass", "${REDIS_PASS}" ]
     ports:
       - "${REDIS_PORT}:6379"
     volumes:
@@ -23,6 +23,21 @@ services:
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
 
+  postgres:
+    image: postgres:16-alpine
+    container_name: api-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
 volumes:
   redis_data:
   rabbitmq_data:
+  postgres_data:
+

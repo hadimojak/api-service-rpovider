@@ -2,15 +2,20 @@ import * as Joi from 'joi';
 
 export const ConfigValidationSchema = Joi.object({
   PORT: Joi.number().port().default(3000),
-
+  //redis
   REDIS_HOST: Joi.string().hostname().required(),
   REDIS_PORT: Joi.number().port().default(6379),
   REDIS_PASS: Joi.string().min(6).required(),
-
+  //rabbit
   RABBITMQ_HOST: Joi.string().hostname().required(),
   RABBITMQ_USER: Joi.string().alphanum().min(3).required(),
   RABBITMQ_PASS: Joi.string().min(6).required(),
   RABBITMQ_PORT: Joi.number().port().default(4067),
   RBT_SERVICE_NAME: Joi.string().default('RABBITMQ_SERVICE'),
   RBT_QUEUE_NAME: Joi.string().default('API_JOB'),
+  //postgress
+  POSTGRES_PORT: Joi.number().port().default(5432),
+  POSTGRES_DB: Joi.string().required(),
+  POSTGRES_USER: Joi.string().alphanum().min(3).required(),
+  POSTGRES_PASSWORD: Joi.string().min(6).required(),
 }).unknown(true);
