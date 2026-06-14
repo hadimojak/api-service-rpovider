@@ -12,9 +12,7 @@ export class LogService {
   ) {}
 
   async createLog(payload: CreateRequestLogDto): Promise<RequestLogEntity> {
-    const log = this.requestLogRepo.create({
-      ...payload,
-    });
+    const log = this.requestLogRepo.create(payload);
 
     return this.requestLogRepo.save(log);
   }

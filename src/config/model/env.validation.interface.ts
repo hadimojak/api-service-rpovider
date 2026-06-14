@@ -8,7 +8,7 @@ export interface envValidationInterface {
   RABBITMQ_PASS: string;
   RABBITMQ_PORT: number;
   RBT_SERVICE_NAME: string;
-  RBT_QUEUE_NAME: string;
+  REQUEST_LOG_QUEUE: string;
   POSTGRES_HOST: string;
   POSTGRES_PORT: number;
   POSTGRES_DB: string;

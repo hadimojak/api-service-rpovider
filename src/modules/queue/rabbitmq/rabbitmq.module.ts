@@ -20,7 +20,7 @@ import { LogModule } from '../../log/log.module';
             urls: [
               `amqp://${ConfigService.config.rabbitmq.user}:${ConfigService.config.rabbitmq.password}@${ConfigService.config.rabbitmq.host}:${ConfigService.config.rabbitmq.port}`,
             ],
-            queue: ConfigService.config.rabbitmq.defaultQueueName,
+            queue: ConfigService.config.rabbitmq.requestLogQueue,
             queueOptions: { durable: true },
             noAck: true,
           },

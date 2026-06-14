@@ -13,7 +13,7 @@ export const ConfigValidationSchema = Joi.object<envValidationInterface>({
   RABBITMQ_PASS: Joi.string().min(6).required(),
   RABBITMQ_PORT: Joi.number().port().default(4067),
   RBT_SERVICE_NAME: Joi.string().default('RABBITMQ_SERVICE'),
-  RBT_QUEUE_NAME: Joi.string().default('API_JOB'),
+  REQUEST_LOG_QUEUE: Joi.string().default('DEFAULT'),
   //postgress
   POSTGRES_HOST: Joi.string().hostname().required(),
   POSTGRES_PORT: Joi.number().port().default(5432),
