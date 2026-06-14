@@ -1,4 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity('provider')
 export class ProviderEntity {
@@ -32,9 +38,13 @@ export class ProviderEntity {
   })
   timeout!: number;
 
-  @Column()
+  @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt!: Date;
 
-  @Column()
+  @UpdateDateColumn({
+    type: 'timestamp',
+    nullable: true,
+    default: null,
+  })
   updatedAt!: Date;
 }

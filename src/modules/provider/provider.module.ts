@@ -6,8 +6,8 @@ import { ProviderEntity } from './entities/provider.entity';
 import { ProviderController } from './provider.controller';
 
 @Module({
-  providers: [ProviderService],
   imports: [HttpModule, TypeOrmModule.forFeature([ProviderEntity])],
+  providers: [ProviderService],
   exports: [ProviderService],
   controllers: [ProviderController],
 })

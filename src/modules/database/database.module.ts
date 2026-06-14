@@ -2,6 +2,9 @@ import { Module } from '@nestjs/common';
 import { DatabaseService } from './database.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '../../config/config.service';
+import { ProviderEntity } from '../provider/entities/provider.entity';
+import { TenantEntity } from '../tenant/entities/tenant.entity';
+import { RequestLogEntity } from '../log/entities/request-log.entity';
 
 @Module({
   providers: [DatabaseService],
@@ -14,6 +17,7 @@ import { ConfigService } from '../../config/config.service';
         username: ConfigService.config.postgress.POSTGRES_USER,
         password: ConfigService.config.postgress.POSTGRES_PASSWORD,
         database: ConfigService.config.postgress.POSTGRES_DB,
+        entities: [ProviderEntity, TenantEntity, RequestLogEntity],
         synchronize: false,
         logging: false,
         retryAttempts: 10,

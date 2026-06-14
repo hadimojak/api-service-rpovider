@@ -51,7 +51,7 @@ we should have three diffrent env file likes this :
 
 ## migrations script guide
 
-npm run mig:gen:dev --name=name   
+npm run mig:gen:dev --name=name
 
 ## tree
 

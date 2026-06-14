@@ -9,8 +9,8 @@ export class CreateProviderDto {
   @ApiProperty({ description: 'Unique code identifier', example: 'PAYPAL_01' })
   @IsString()
   @IsNotEmpty()
-  @Length(2, 50) // Restrict length, don't just rely on DB limits
-  @Transform(({ value }) => value?.trim()) // Sanitize: Remove accidental spaces
+  @Length(2, 50)
+  @Transform(({ value }) => value?.trim())
   code!: string;
 
   @ApiProperty({ description: 'Type of the provider', example: 'payment' })
@@ -44,6 +44,6 @@ export class CreateProviderDto {
   @IsInt()
   @IsOptional()
   @Min(100)
-  @Max(60000) // Don't allow crazy high timeouts
+  @Max(60000)
   timeout?: number = 10000;
 }

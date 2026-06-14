@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('request_log')
 export class RequestLogEntity {
@@ -31,9 +31,6 @@ export class RequestLogEntity {
   })
   errorMessage?: string;
 
-  @Column()
+  @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt!: Date;
-
-  @Column()
-  updatedAt!: Date;
 }
